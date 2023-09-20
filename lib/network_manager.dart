@@ -31,4 +31,22 @@ class NetworkManager {
       throw Exception('Failed to create album.');
     }
   }
+
+  Future<Album> updateAlbum(int id, String title) async {
+    final response = await http.put(
+      Uri.parse('https://jsonplaceholder.typicode.com/albums/$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'title': title,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      return Album.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to update album.');
+    }
+  }
 }

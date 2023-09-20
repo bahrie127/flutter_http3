@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(title: const Text('http example')),
+        appBar: AppBar(title: const Text('http example update')),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -42,10 +42,10 @@ class _MyAppState extends State<MyApp> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  futureAlbum = NetworkManager().createAlbum(_controller.text);
+                  futureAlbum = NetworkManager().updateAlbum(1, _controller.text);
                 });
               },
-              child: const Text('Create Data'),
+              child: const Text('Update Data'),
             ),
             FutureBuilder<Album>(
               future: futureAlbum,
